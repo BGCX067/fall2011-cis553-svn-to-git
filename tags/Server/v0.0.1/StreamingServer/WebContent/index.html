@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Server Test Page</title>
+<script type='text/javascript' src='jwplayer.js'></script>
+</head>
+<body>
+
+<div id='page-title' class="h1">Test Page with JWPlayer</div>
+</br>
+<div>This page requires manual editing of html to change the steam that his loaded into the JwPlayer</div>
+</br>
+<div id='mediaspace'>This text will be replaced</div>
+ 
+<script type='text/javascript'>
+  jwplayer('mediaspace').setup({
+    'flashplayer': 'player.swf',
+    'file': 'sample',
+    'streamer': 'rtmp://localhost/StreamingServer',
+    'controlbar': 'bottom',
+    'width': '585',
+    'height': '385'
+  });
+</script>
+
+</body>
+</html>

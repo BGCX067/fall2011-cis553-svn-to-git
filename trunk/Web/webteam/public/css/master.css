@@ -1,0 +1,855 @@
+/*  This template was created by Mantis-a [http://www.mantisa.cz/]. For more templates visit Free website templates [http://www.mantisatemplates.com/]. */
+
+
+
+/* CSS Document */
+
+
+/* General */
+
+* {
+margin: 0;
+padding: 0;
+}
+
+
+#tips{
+	font-size: 12px;
+	color: #334BC3;
+	padding-left: 80px;
+
+}
+
+html {
+
+font-size: 75.5%;
+}
+
+body {
+
+text-align: center;
+
+
+font-family: Helvetica, "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+font-size:14px;
+
+}
+
+.playercontainer{
+margin-left: 220px;
+}
+
+#main {
+
+background: url('../images/main-bg.gif') repeat-y center 0;
+
+position: relative;
+}
+ 
+body>#main {
+height: auto;
+}
+
+a:link, a:visited {
+color: #7A4500;
+text-decoration: underline;
+font-weight: bold;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+.cleaner {
+clear: both;
+height: 0;
+font-size: 0;
+visibility: hidden;
+content: ' ';
+}
+
+.cleaning-box { 
+min-height: 1px;
+}
+
+.cleaning-box:after {
+display: block; 
+clear: both; 
+visibility: hidden; 
+height: 0; 
+font-size: 0; 
+content: ' ';
+}
+
+.noscreen {
+display: none;
+}
+
+.hidden { /* Skip menu */
+position: absolute;
+top: -10000px;
+left: 0;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
+
+/* Paragraphs, headings, ... */
+
+p {
+line-height: 170%;
+margin-bottom: 10px;
+color: #381C00;
+}
+
+h1 {
+font-size: 2.8em;
+font-weight: normal;
+color: #000000;
+text-align: left;
+padding: 49px 0 0 42px;
+background: url('../images/h1-bg-flame.png') no-repeat 0 43px;
+}
+
+h1 a:link, h1 a:visited {
+font-weight: normal;
+text-decoration: none;
+color: #FFFFFF;
+}
+
+h2 {
+font-size: 1.6em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-weight: normal;
+color: #000000;
+text-align: left;
+margin: 3px 0 0 2px;
+}
+
+h3 {
+font-size: 1.4em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-weight: normal;
+color: #623300;
+letter-spacing: 1px;
+padding-bottom: 3px;
+border-bottom: 1px solid #623300;
+margin-bottom: 7px;
+}
+
+
+
+/* Images */
+
+img.float {
+float: left;
+border: 1px solid #623300;
+margin: 0.5em 0.8em 0.5em 0;
+}
+
+
+/* Header */
+
+#header {
+height: 198px;
+position: relative;
+background: #673D00 url('../images/hd-bg.gif') repeat-x 0 0;
+}
+
+#header-in {
+width: 900px;
+height: 198px;
+position: relative;
+margin: 0 auto;
+}
+
+ul#navigation {
+float: right;
+margin: 8px 1px 0 0;
+display: inline;
+color: #FFFFFF;
+}
+
+ul#navigation li {
+float: left;
+display: inline;
+list-style-type: none;
+text-align: center;
+font-size: 0.9em;
+}
+
+ul#navigation li a, ul#navigation li a:visited {
+text-decoration: none;
+color: #FFFFFF;
+font-weight: normal;
+}
+
+ul#navigation li a:hover {
+text-decoration: underline;
+}
+
+li#home {
+background: url('../images/house.gif') no-repeat 0 1px;
+padding-left: 24px;
+}
+
+li#home a {
+margin-right: 16px;
+}
+
+
+li#welcome {
+padding-left: 0px;
+margin-left: 0px;
+}
+
+li#welcome a {
+margin-right: 400px;
+}
+
+
+
+li#login {
+background: url('../images/lock.gif') no-repeat 0 2px;
+padding-left: 24px;
+margin-left: 16px;
+}
+
+li#login a {
+margin-right: 16px;
+}
+
+li#logout {
+background: url('../images/logout.png') no-repeat 0 2px;
+padding-left: 24px;
+margin-left: 16px;
+}
+
+li#logout a {
+margin-right: 16px;
+}
+
+li#signup {
+background: url('../images/signup2.png') no-repeat 0 2px;
+padding-left: 24px;
+margin-left: 16px;
+}
+
+li#signup a {
+margin-right: 16px;
+}
+
+li#about {
+background: url('../images/info.png') no-repeat 0 2px;
+padding-left: 23px;
+margin-left: 16px;
+}
+
+
+
+
+
+/* Search form */
+
+form.searching {
+width: 210px;
+position: absolute;
+top: 47px;
+right: 0;
+}
+
+form.searching fieldset {
+border: 0;
+}
+
+form.searching input.search {
+letter-spacing: 1px;
+float: left;
+padding: 2px 0 2px 6px;
+width: 139px;
+border: 1px solid gray;
+}
+
+form.searching input.hledat {
+letter-spacing: 1px;
+padding-left: 0;
+margin-left: 4px;
+font-weight: bold;
+color: #FFFFFF;
+float: left;
+}
+
+form.searching label {
+display: none;
+}
+
+
+/* Menu */
+
+#menu-box {
+background: #4A4A4A url('../images/menu-bg.gif') repeat-x 0 0;
+border-bottom: 3px solid black;
+}
+
+#menu {
+width: 850px;
+margin: 0 auto;
+}
+
+#menu li {
+display: inline;
+list-style-type: none;
+text-align: center;
+}
+
+#menu li.first a {
+margin-left: 1.6em;
+display: inline
+}
+
+#menu li a {
+float: left;
+color: #FFFFFF;
+font-weight: bold;
+font-size: 1.1em;
+display: block;
+padding: 0.9em 1.4em 0.7em 1.4em;
+}
+
+#menu li a:hover, #menu li a.active {
+color: #000000;
+background-color: #FFCD34;
+font-weight: bold;
+font-size: 1.1em;
+}
+
+
+/* Content box */
+
+#content {
+min-height: 624px;
+background-image: url('../images/content-bg.jpg');
+background-repeat: repeat;
+}
+
+#content-box {
+width: 950px;
+margin: 0 auto;
+background-color: #FFFFFF;
+text-align: left;
+border-right: 1px solid #B0B0B0;
+border-left: 1px solid #B0B0B0;
+padding-bottom: 80px;
+min-height: 544px;
+}
+
+
+.myform{
+margin:0 auto;
+width:400px;
+padding:14px;
+}
+
+/* ----------- stylized ----------- */
+#stylized{
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+}
+#stylized h1 {
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#stylized p{
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#stylized input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 10px;
+}
+#stylized button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+background:#666666 url(img/button.png) no-repeat;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}
+
+
+
+
+
+
+
+/* Table */
+
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#E4EFF1;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+
+.first-row {
+background: #F4FF7C;
+}
+
+.first-row th {
+text-align: center;
+font-weight: bold;
+border-bottom: 2px solid #663700;
+}
+
+.first-column {
+background: #FFD162;
+border-right: 1px solid #663700;
+}
+
+.last-column {
+background-color: #FFD162;
+border-left: 1px solid #663700;
+}
+
+#footer {
+width: 100%;
+height: 60px;
+background: #673D00 url('../images/footer-bg.gif') repeat-x 0 0;
+position: absolute;
+bottom: 0;
+left: 0;
+}
+
+#footer-in {
+width: 950px;
+margin: 0 auto;
+}
+
+p.footer-left {
+float: left;
+width: 450px;
+color: #FFFFFF;
+text-align: left;
+margin: 9px 0 0 15px;
+display: inline;
+}
+
+p.footer-left a, p.footer-left a:visited {
+color: #FFFFFF;
+padding: 1px 2px;
+}
+
+p.footer-left a:hover {
+background-color: #FFFFFF;
+color: #683800;
+}
+
+p.footer-right {
+float: right;
+width: 450px;
+color: #FFFFFF;
+text-align: right;
+margin: 9px 15px 0 0;
+display: inline;
+}
+
+p.footer-right a, p.footer-right a:visited {
+color: #FFFFFF;
+padding: 1px 2px;
+}
+
+p.footer-right a:hover {
+background-color: #FFFFFF;
+color: #683800;
+}
+
+p.footer-right a, p.footer-right a:visited  {
+font-weight: normal;
+}
+
+
+
+
+
+/* ZEND FORM DECORATOR */
+   /**
+ * Universal Zend_Form styling
+ * For proper looks you need to include attached javascript file!
+ * @author Wojtek Iskra
+ * @version 1.0.1, 2011-05-05
+ */
+  
+/**
+ * This is to avoid horizontal scroll appearing, may not be necessary
+ */
+form {
+    width: 98%;
+    margin: 0 auto;
+    overflow: auto;
+}
+     
+    form label {
+        color: #666;
+    }
+     
+    /**
+     * Adding red star after label of each required Zend_Form_Element
+     */
+    form label.required:after {
+        color: red;
+        content: "*";
+    }
+ 
+    /**
+     * Horizontally centering submit button, 'submit-container' class added by jquery
+     */
+    form dd.submit-container {
+        clear: both;
+        text-align: center;
+    }
+ 
+    form fieldset {
+        border: none;
+    }
+ 
+    form dd {
+        margin: 0 0 0.7em 0;
+    }
+ 
+        form dd p.description {
+            width: 100%;
+            max-width: 350px;
+            margin: 0.2em 0 0 0.2em;
+            padding: 0;
+            color: #999;
+            font-size: 0.85em;
+        }
+ 
+        form dd ul.errors {
+            margin: 0 0 0 1.6em;
+            padding: 0;
+        }
+ 
+            form dd ul.errors li {
+                width: 100%;
+                max-width: 350px;
+                margin-top: 0.2em;
+                margin: 0.2em 0 0 0;
+                padding: 0;
+                color: red;
+                font-size: 0.9em;
+            }
+ 
+ 
+    form input[type=text],
+    form input[type=password],
+    form textarea,
+    form select {
+        width: 100%;
+        max-width: 350px;
+        padding: 0.5em;
+        color: #555;
+        font-size: 1em;
+        background: #fff;
+        border: 1px #ddd solid;
+        -webkit-box-shadow: 0px 0px 4px #aaa;
+        -moz-box-shadow: 0px 0px 4px #aaa;
+        box-shadow: 0px 0px 4px #aaa;
+    }
+ 
+    /**
+     * Highlighting current element
+     */
+    form input[type=text]:focus,
+    form input[type=password]:focus,
+    form select:focus,
+    form textarea:focus {
+        background: #FFFFE0;
+    }
+ 
+    form select {
+        max-width: 365px;
+    }
+ 
+    form textarea {
+        height: 100px;
+    }
+     
+    /**
+     * Highlighting elements that were found invalid.
+     * 'error' class added by jquery.
+     */
+    form input[type=text].error,
+    form input[type=password].error,
+    form select.error,
+    form textarea.error {
+        background: #fee;
+    }
+ 
+    form input[type=submit] {
+        margin-top: -10px;
+        padding: 0.4em 1.2em;
+        color: #666;
+        font-size: 14px; font-size: 1.25em;
+        border-radius: 5px;
+        -moz-border-radius: 5px 5px 5px 5px;
+        border: 0 none;
+        cursor: pointer;
+        -webkit-box-shadow: 2px 2px 2px #666;
+        -moz-box-shadow: 2px 2px 2px #666;
+        box-shadow: 2px 2px 2px #666;
+        background: #f6f8f9; /* old browsers */
+        background: -moz-linear-gradient(
+                                            top,
+                                            #f6f8f9 0%,
+                                            #e5ebee 50%,
+                                            #d7dee3 51%,
+                                            #f5f7f9 100%
+                                        ); /* firefox */
+        background: -webkit-gradient(
+                                        linear,
+                                        left top,
+                                        left bottom,
+                                        color-stop(0%,#f6f8f9),
+                                        color-stop(50%,#e5ebee),
+                                        color-stop(51%,#d7dee3),
+                                        color-stop(100%,#f5f7f9)
+                                    ); /* webkit */
+        filter: progid:DXImageTransform.Microsoft.gradient(
+                                                            startColorstr='#f6f8f9',
+                                                            endColorstr='#f5f7f9',
+                                                            GradientType=0
+                                                          ); /* ie */
+    }
+ 
+    form input[type=submit]:hover {
+        color: #fff;
+        background: #bfd255; /* old browsers */
+        background: -moz-linear-gradient(
+                                            top,
+                                            #bfd255 0%,
+                                            #8eb92a 50%,
+                                            #72aa00 51%,
+                                            #9ecb2d 100%
+                                        ); /* firefox */
+        background: -webkit-gradient(
+                                        linear,
+                                        left top,
+                                        left bottom,
+                                        color-stop(0%,#bfd255),
+                                        color-stop(50%,#8eb92a),
+                                        color-stop(51%,#72aa00),
+                                        color-stop(100%,#9ecb2d)
+                                    ); /* webkit */
+        filter: progid:DXImageTransform.Microsoft.gradient(
+                                                            startColorstr='#bfd255',
+                                                            endColorstr='#9ecb2d',
+                                                            GradientType=0
+                                                          ); /* ie */
+    }
+ 
+form.allInDisplayGroups > dl > dd > fieldset > legend {
+    font-size: 1.4em;
+}
+ 
+form.elementsOnly,
+form.subformsOnly fieldset,
+form.allInDisplayGroups fieldset fieldset,
+form.subformAndDisplayGroups fieldset {
+    margin-bottom: 2.5em;
+    padding: 1em 0;
+    background-color: #eee;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 10px #666;
+    -moz-box-shadow: 3px 3px 10px #666;
+    box-shadow: 3px 3px 10px #666;
+    background: #ffffff; /* old browsers */
+    background: -moz-linear-gradient(
+                                        top,
+                                        #ffffff 0%,
+                                        #e5e5e5 100%
+                                    ); /* firefox */
+    background: -webkit-gradient(
+                                    linear,
+                                    left top,
+                                    left bottom,
+                                    color-stop(0%,#ffffff),
+                                    color-stop(100%,#e5e5e5)
+                                ); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(
+                                                            startColorstr='#ffffff',
+                                                            endColorstr='#e5e5e5',
+                                                            GradientType=0
+                                                      ); /* ie */
+}
+ 
+    form.subformsOnly fieldset dd:last-of-type,
+    form.allInDisplayGroups fieldset fieldset dd:last-of-type,
+    form.subformAndDisplayGroups fieldset dd:last-of-type {
+        margin-bottom: 0;
+    }
+ 
+    form.subformsOnly fieldset legend,
+    form.allInDisplayGroups fieldset fieldset legend,
+    form.subformAndDisplayGroups fieldset legend {
+        width: 100%;
+        margin-top: -1em; margin-bottom: 1em;
+        padding: 0.2em 0;
+        color: #666;
+        font-size: 1.25em;
+        text-align: center;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-box-shadow: 2px 2px 2px #666;
+        -moz-box-shadow: 2px 2px 2px #666;
+        box-shadow: 2px 2px 2px #666;
+        background: #f6f8f9; /* old browsers */
+        background: -moz-linear-gradient(
+                                            top,
+                                            #f6f8f9 0%,
+                                            #e5ebee 50%,
+                                            #d7dee3 51%,
+                                            #f5f7f9 100%
+                                        ); /* firefox */
+        background: -webkit-gradient(
+                                        linear,
+                                        left top,
+                                        left bottom,
+                                        color-stop(0%,#f6f8f9),
+                                        color-stop(50%,#e5ebee),
+                                        color-stop(51%,#d7dee3),
+                                        color-stop(100%,#f5f7f9)
+                                    ); /* webkit */
+        filter: progid:DXImageTransform.Microsoft.gradient(
+                                                            startColorstr='#f6f8f9',
+                                                            endColorstr='#f5f7f9',
+                                                            GradientType=0
+                                                          ); /* ie */
+    }
+ 
+    form.subformsOnly fieldset label,
+    form.allInDisplayGroups fieldset fieldset label,
+    form.subformAndDisplayGroups fieldset label {
+        font-size: 1.1em;
+        line-height: 1.8em;
+    }
+ 
+    form.elementsOnly dl,
+    form.subformsOnly fieldset dl,
+    form.allInDisplayGroups fieldset fieldset dl,
+    form.subformAndDisplayGroups fieldset dl {
+        margin: 0 1.6em 1.2em;
+    }
+ 
+/**
+ * Two-column layout
+ */
+form.twoColumns.subformsOnly dl.zend_form>dd>fieldset,
+form.twoColumns.subformAndDisplayGroups dl.zend_form>dd>fieldset>dl>dd>fieldset,
+form.twoColumns.allInDisplayGroups dl.zend_form>dd>fieldset>dl>dd>fieldset {
+    float: left;
+    width: 48%;
+}
+ 
+form.twoColumns.subformsOnly dl.zend_form>dd:nth-of-type(2n+1)>fieldset,
+form.twoColumns.subformAndDisplayGroups dl.zend_form>dd>fieldset>dl>dd:nth-of-type(2n+1)>fieldset,
+form.twoColumns.allInDisplayGroups dl.zend_form>dd>fieldset>dl>dd:nth-of-type(2n+1)>fieldset {
+    margin-right: 3%;
+}
+ 
+/**
+ * In-line labels
+ */
+form.inlineLabels dt {
+    float: left;
+    width: 40%;
+}
+  
+    form.inlineLabels input[type=text],
+    form.inlineLabels input[type=password],
+    form.inlineLabels textarea,
+    form.inlineLabels select {
+        max-width: 250px;
+    }
+ 
+    form.inlineLabels select {
+        max-width: 265px;
+    }
+
+
+	
+.thumbcontainer{
+	
+	 margin: 0 auto;
+    overflow: auto;
+	
+	
+}	
+div.thumb {
+margin: 3px;
+border: 1px solid #A0ACC0;
+height: auto;
+float:left;
+text-align: center;
+}
+.thumb img{
+display: inline;
+margin: 5px;
+border: 1px solid #A0ACC0;
+
+}
+.thumb a:hover img {border: 1px solid black;}
+.photocattitle {text-align: center; font-weight: bold;}
+.phototitle {
+text-align: center;
+font-weight: normal;
+width: 120px;
+margin: 0 3px 3px 3px;
+} 

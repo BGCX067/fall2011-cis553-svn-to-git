@@ -1,0 +1,33 @@
+<h2>Search</h2>
+<?php echo $this->form; ?>
+<div id="tips">
+	<strong>Tips:</strong>
+	<p>use * if you know part of the keyword. ex Chris*<br />
+	use ~ if you are not sure about the spelling.</p>
+</div>
+<h2>Search Results</h2>
+<p><?php echo count($this->results); ?> result(s) found.</p>
+
+<?php if (count($this->results)): ?>
+  <?php $x=1; ?>
+  <?php foreach ($this->results as $r): ?>
+  <div>
+  <?php echo $x; ?>. 
+    <a href="<?php echo $this->url(array('id' => $this->escape($r->getDocument()->VideoID)) , 'catalog-display'); ?>">
+      <?php echo $this->escape($r->Title); ?>         
+    </a> 
+    <br/>
+    Score: <?php printf('%1.4f', $this->escape($r->score)); ?>           
+    <br/>
+  </div>
+  <br/>
+    <?php $x++; ?>
+  <?php endforeach; ?>
+<?php endif; ?>
+
+
+<!--  
+<div>
+<a href="<?php //echo $this->url(array('module' => 'catalog', 'controller' => 'video', 'action' => 'create'), null, true); ?>">Add Video</a>
+</div>
+-->

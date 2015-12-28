@@ -1,0 +1,24 @@
+<h2><?php echo $this->UserName; ?> Videos</h2>
+<?php if(count($this->records)): ?>
+<div id="pager">Pages: <?php echo $this->pages; ?></div>
+
+<div class="thumbcontainer">
+<?php foreach ($this->records as $r): ?>
+<div class="thumb">
+	<a href="<?php echo $this->url(array('id' => $r['VideoID']), 'catalog-display'); ?>" >
+	<img src="<?php echo $r['ImageURL']; ?>" width="192" height="144" alt="">
+	</a>
+<div class="phototitle">
+<?php echo $r['Title']; ?>
+</div>
+<div class="byphotocattitle">by <a href="<?php echo $this->url(array(), 'catalog-user-video') . "?UserName=" . $r['UserName'] . "&" . "page=1"; ?>"><?php echo $r['UserName'];?></a>
+</div>
+</div>
+
+<?php endforeach; ?>
+
+</div>
+
+<div id="pager">Pages: <?php echo $this->pages; ?></div>
+
+<?php else: ?>No records found<?php endif; ?>

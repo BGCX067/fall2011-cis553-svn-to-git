@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!--
+	Defines a properties file for dereferencing variables
+	-->
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="location" value="/WEB-INF/red5-web.properties" />
+	</bean>
+	
+	<!--
+	Defines the web context
+	-->
+	<bean id="webContext" class="org.red5.server.Context" autowire="byType" />
+	
+	<!--
+	Defines the web scopes
+	-->
+	<bean id="webScope" class="org.red5.server.WebScope"
+		 init-method="register">
+		<property name="server" ref="red5.server" />
+		<property name="parent" ref="global.scope" />
+		<property name="context" ref="webContext" />
+		<property name="handler" ref="webHandler" />
+		<property name="contextPath" value="${contextPath}" />
+		<property name="virtualHosts" value="${virtualHosts}" />
+	</bean>
+
+	<!--
+	Defines the web handler which acts as an applications endpoint
+	-->
+	<bean id="webHandler" class="edu.umd.cis.server.Application" singleton="true" />
+ 
+ 	<!-- 
+	<bean id="streamFilenameGenerator" class="edu.umd.cis.server.FileNameResolver">
+		<property name="playbackPath" value="${streamPath}" />
+	    <property name="recordPath" value="${streamPath}" />
+	</bean>
+	-->
+</beans>

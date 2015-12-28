@@ -1,0 +1,32 @@
+<html>
+<head>
+ <title>Untitled</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="language" content="en" />
+ <meta name="description" content="" />
+ <meta name="keywords" content="" />
+ <script type="text/javascript" src="jwplayer.js"></script>
+
+</head>
+<body>
+<div id="mediaplayer">JW Player goes here</div>
+ 
+ <script type="text/javascript" src="jwplayer.js"></script>
+ <script type="text/javascript">
+  jwplayer("mediaplayer").setup({
+   height: 270,
+   width: 480,
+   modes:[
+    { type:"flash",
+      src: "player.swf",
+      config: {
+     file: "stream1",
+     streamer: "rtmp://141.215.80.249/StreamingServer/",
+     provider: "rtmp"
+      }
+    }
+    ]
+  });
+ </script>
+</body>
+</html>

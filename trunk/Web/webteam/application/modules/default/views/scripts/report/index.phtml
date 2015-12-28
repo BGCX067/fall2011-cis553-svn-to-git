@@ -1,0 +1,21 @@
+
+
+<div id="record">
+<table class="hovertable">
+	<tr>
+		<th class="key">Number of Videos</th>
+		<td class="value"><?php echo count($this->videoRecords); ?></td>
+	</tr>
+	<tr>
+		<th class="key">Number of Users</th>
+		<td class="value"><?php echo count($this->userRecords); ?></td>
+	</tr>
+	
+	</table>
+	
+	<div style="color:red; font-weight:bolder">
+  <?php if(isset($this->messages)) echo implode($this->messages);  ?>
+	</div>
+	<?php echo $this->userForm; ?>
+	<?php echo $this->videoFrom; ?>
+</div>

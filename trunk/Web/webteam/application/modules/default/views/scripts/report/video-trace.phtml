@@ -1,0 +1,24 @@
+<h2>Video ID (<?php echo $this->VideoID; ?>) Trace:</h2>
+<?php if(count($this->records)): ?>
+<div id="pager">Pages: <?php echo $this->pages; ?></div>
+<div id="record">
+	
+    <table class="hovertable">
+      <tr>
+        <th class="key">Username</th>
+        <th class="key">Date</th>
+       
+      </tr>
+      
+      <?php foreach ($this->records as $r): ?>
+      <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#E4EFF1';">   	
+      	<td><?php echo $this->escape($r['UserName']); ?></td>
+      	<td><?php echo $this->escape($r['LogTime']); ?></td>
+      </tr>
+      	<?php endforeach; ?>
+    </table>
+
+</div>
+<div id="pager">Pages: <?php echo $this->pages; ?></div>
+
+<?php else: ?>No records found<?php endif; ?>

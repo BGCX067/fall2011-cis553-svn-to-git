@@ -1,0 +1,6 @@
+1. create project using zend tool
+2. create default module folder and move controller, view, module folders into the default module folder
+3. update the application ini to relfect these changes
+
+
+

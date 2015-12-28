@@ -1,0 +1,55 @@
+#summary These are very brief instructions on how to use SVN with eclipse/google code.
+#labels Subsystem-Server
+----
+== Prerequisites ==
+
+The following wiki page assumes that you have Eclipse J2EE on windows (this should work on ubuntu too).
+----
+= Subclipse =
+To use Subversion in Eclipse you need install Subclipse to checkout/commit/revert/etc.
+More information if anyone is interested can be found at the [http://subclipse.tigris.org/ Subclipse] project site.
+
+== 1 - Eclipse Market ==
+Open Eclipse and navigate to Help > "Eclipse Marketplace ..."
+
+https://dl.dropbox.com/u/34543642/Subclipse1.png
+
+In the search box type Subclipse and install the Subclipse Solution.
+
+https://dl.dropbox.com/u/34543642/Subclipse2.png
+
+You should be prompted a few times to accept license, install unsigned content, and restart eclipse.
+
+=== *NOTE* ===
+*If you are running a 64-bit version of Eclipse you will need to install [http://www.sliksvn.com/en/download SilkSVN].  Download and Install the 64-bit version.*
+----
+== 2 - SVN Repositories View ==
+After restarting Navigate to Window > Show View ... and open the SVN Repositories view.
+
+Right click in the SVN Repositories pane and add a new Repository.
+
+https://dl.dropbox.com/u/34543642/Subclipse3.png
+
+Your SVN repositories should now have access to this google code projects code.
+----
+== 3 - Checkout Code ==
+In the SVN Repositories view expand the "trunk" folder, select all three projects, Lib, StreamingServer, and StreamingServerTest.  Right-click and Navigate to "Checkout...".
+
+https://dl.dropbox.com/u/34543642/Subclipse4.png
+
+Eclipse should pop up a dialog with a few options, leave the defaults.
+Now the code should be checked out into the workspace.
+----
+== 4 - Run JUnit Test ==
+In the project explorer expand StreamingServerTest until you see the class FakeApplicationTest.  Right Click > Run As > JUnit Test.
+
+https://dl.dropbox.com/u/34543642/Subclipse5.png
+
+----
+== 5 - Export Server as WAR file ==
+Right Click StreamingServer and navigate to Export > WAR file.
+
+https://dl.dropbox.com/u/34543642/Subclipse6.png
+
+That WAR file should be deployable to any Red5 Server.
+----

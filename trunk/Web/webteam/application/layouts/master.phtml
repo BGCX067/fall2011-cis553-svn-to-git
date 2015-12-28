@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+     <script type='text/javascript' src='/jwplayer/jwplayer.js'></script>
+    <link rel="stylesheet" type="text/css" href="/css/master.css" />
+  </head>
+  <body>
+   <div id="main">
+
+	<!-- Header -->
+	<div id="header">
+		<div id="header-in">
+			
+				<?php if($this->identity == null) { ?>
+				<ul id="navigation">
+				<li id="home"><a href="<?php echo $this->url(array(), 'home'); ?>">Homepage</a>|</li>
+				<li id="login"><a href="<?php echo $this->url(array(), 'login'); ?>">Log in</a>|</li>
+				<li id="signup"><a href="<?php echo $this->url(array(), 'signup'); ?>">Sign up</a>|</li>
+				<li id="about"><a href="<?php echo $this->url(array('page' => 'about-us'), 'static-content'); ?>">About us</a></li>
+				</ul>
+				<?php } else { ?>	
+				<ul id="navigation">	
+				<li id="welcome"><a href="<?php echo $this->url(array(), 'user-account-display'); ?>">Welcome, <?php echo $this->identity['UserName']; ?></a></li>
+				<li id="home"><a href="<?php echo $this->url(array(), 'home'); ?>">Homepage</a>|</li>
+				<li id="logout"><a href="<?php echo $this->url(array(), 'logout'); ?>">Log out</a>|</li>
+				<li id="about"><a href="<?php echo $this->url(array('page' => 'about-us'), 'static-content'); ?>">About us</a></li>		
+				</ul>
+				<?php };?>
+		<!-- Your website name  -->
+		<h1><a href="<?php echo $this->url(array(), 'home'); ?>">Web Team VMS</a></h1>
+		<!-- Your website name end -->
+		
+			<!-- Your slogan -->
+			<h2>Enjoy watching live streams&hellip;</h2>
+			<!-- Your slogan end -->
+
+		<!-- Search form -->
+		<form  class="searching" action="/catalog/video/search" method="get">
+		<fieldset>
+			<label>Searching</label>
+				<input class="search" type="text" name = "q" id = "q"  />
+				<input class="hledat" type="image" src="/images/search-button.gif" name="submit" alt="Search" />
+		</fieldset>
+		</form>
+		<!-- Search end -->		
+		</div>
+	</div>
+	<!-- Header end -->
+	
+	<!-- Menu -->
+	<div id="menu-box" class="cleaning-box">
+	<a href="#skip-menu" class="hidden">Skip menu</a>
+		<ul id="menu">
+			<?php if($this->identity['Role'] == 'admin'){ ?>
+			<li class="first"><a href="<?php echo $this->url(array(), 'catalog-list-live');  ?>" >All Videos</a></li>
+<!--			<li><a href="<?php echo $this->url(array(), 'catalog-list-past'); ?>">Past Broadcasts</a></li>-->
+			<li><a href="<?php echo $this->url(array(), 'admin-account-index'); ?>">Manage Users</a></li>
+			<li><a href="<?php echo $this->url(array(), 'admin-catalog-index'); ?>">Manage Videos</a></li>
+			<li><a href="<?php echo $this->url(array(), 'report'); ?>">Report</a></li>
+			<li><a href="<?php echo $this->url(array(), 'user-account-display'); ?>">Profile</a></li>
+<!--			<li><a href="<?php echo $this->url(array(), 'admin-doctrine-generate'); ?>">Generate Doctrine Models</a></li>-->
+			
+
+			<?php }elseif($this->identity['Role'] =='user'){ ?>
+			<li><a href="<?php echo $this->url(array(), 'catalog-list-live'); ?>">All Videos</a></li>
+<!--			<li><a href="<?php echo $this->url(array(), 'catalog-list-past'); ?>">Past Broadcasts</a></li>-->
+			<li><a href="<?php echo $this->url(array(), 'user-catalog-index'); ?>">My Videos</a></li>
+			<li><a href="<?php echo $this->url(array(), 'user-account-display'); ?>">Profile</a></li>
+			<?php } else { }; ?>
+			
+		</ul>
+	</div>
+	<!-- Menu end -->
+	
+<hr class="noscreen" />
+
+<div id="skip-menu"></div>
+   <div id="content">
+			<div id="content-box">
+					 <?php echo $this->layout()->content ?>
+			</div>
+	<!-- Footer -->
+	<div id="footer">
+		<div id="footer-in">
+			<p class="footer-left">&copy; <a href="<?php echo $this->url(array(), 'home'); ?>">Web Team Video Managment System</a>, 2011.</p>
+			<p class="footer-right"><a target= "_blank" href=http://www.umd.umich.edu>University of Michigan-Dearborn</a> 
+			</p>
+		</div>
+	</div>
+	<!-- Footer end -->
+    </div>
+   </div> 
+  </body>
+</html>

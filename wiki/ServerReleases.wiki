@@ -1,0 +1,36 @@
+#summary Project Releases and Notes
+#labels Subsystem-Server
+
+=Project Releases=
+
+||*Number*||*Release Date*||*Download*||
+||[#0.0 0.0]||Unknown||Not Available||
+||[#0.1 0.1]||Unknown||Not Available||
+||[#0.2 0.2]||Unknown||Not Available||
+
+----
+===0.0===
+  ====Bug Fixes====
+
+  ====Features====
+
+  ====Tasks====
+
+----
+===0.1===
+  ====Bug Fixes====
+
+
+  ====Features====
+
+
+  ====Tasks====
+
+----
+===0.2===
+  ====Bug Fixes====
+
+  ====Features====
+
+
+  ====Tasks====

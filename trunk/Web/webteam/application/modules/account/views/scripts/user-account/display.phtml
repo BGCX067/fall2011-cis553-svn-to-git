@@ -1,0 +1,42 @@
+<h2>View Account</h2>
+  <div id="record">  
+    <table class="hovertable">
+      
+      <tr>
+        <th class="key">First Name:</th>
+        <td class="value">
+          <?php echo $this->escape($this->item['FirstName']); ?>
+        </td>
+      </tr>
+      <tr>
+        <th class="key">Last Name:</th>
+        <td class="value">
+          <?php echo $this->escape($this->item['LastName']); ?>
+        </td>
+      </tr>
+           <tr>
+        <th class="key">Email:</th>
+        <td class="value">
+          <?php echo $this->escape($this->item['Email']); ?>
+        </td>
+      </tr>
+
+    </table>
+ </div>
+ 
+  <br />
+ 	<form method="get" action="<?php echo $this->url(array(), 'user-account-update'); ?>">
+	<dl class="zend_form">
+	<dt id="submit-label1">&#160;</dt><dd id="submit-element1">
+	<input type="submit" name="submit" id="sumit" class="submit" value="Edit Profile">
+	</dl>	
+	</form>
+	
+	
+	<form method="get" action="<?php echo $this->url(array(), 'user-account-password'); ?>">
+	<dl class="zend_form">
+	<dt id="submit-label2">&#160;</dt><dd id="submit-element2">
+	<input type="submit"  name="submit2" id="sumit2" class="submit" value="Change Password">
+	</dl>
+	</form>
+

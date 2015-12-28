@@ -1,0 +1,77 @@
+listOneItem
+listAllItems
+
+         $email    = $this->_request->getPost("email");
+		     $email    = $this->_request->getParam('email');
+			 
+			 
+ Zend_View_Helper_FormatCurrency (will help you elminate redudant code)
+ 
+ class Zend_View_Helper_FormatCurrency {
+    public function formatCurrency($value, $symbol='&pound;')  
+    {
+        $output = '';
+        $value = trim($value);
+        if (is_numeric($value)) {     
+            if ($value >= 0) {
+                $output = $symbol . number_format($value, 2);
+            } else {
+                $output = '-' . $symbol . number_format(abs($value), 2);
+            }
+        }
+        return $output;    
+    }
+}
+
+class Zend_View_Helper_DisplayDate 
+{
+    function displayDate($timestamp, $format=Zend_Date::DATE_LONG) 
+    {
+        $date = new Zend_Date($timestamp, 'en_GB');   
+        return $date->get($format);     
+    }
+}
+
+
+fix improve searchging tool so files are indexed as they are added to tht database
+
+add ~ to the search
+$index = Zend_Search_Lucene::create('path/to/index');
+$doc = new Zend_Search_Lucene_Document();
+$doc->addField(Zend_Search_Lucene_Field::UnIndexed('url', $url));
+$doc->addField(Zend_Search_Lucene_Field::UnStored('contents', $contents));
+$doc->addField(Zend_Search_Lucene_Field::Text('desc', $desc));
+$index->addDocument($doc);
+
+
+Searching a Zend_Search_Lucene index is as simple as this:
+$index = Zend_Search_Lucene::open('path/to/index');
+$index->find($query);
+
+When  you  pass  a  string  to  the  find()  method,  the  Zend_Search_Lucene_
+Search_QueryParser::parse() method is called behind the scenes. This class imple-
+ments the Lucene query parser syntax, as supported by Apache Lucene 2.0. 
+Wildcards  are  also  supported  using  the  asterisk  (*)
+and question mark (?) symbols. A question mark represents a single character, and
+the asterisk represents several characters. For instance, searching for frame* will find
+frame, framework, frameset, and so on. 
+
+First, don’t use id or score as document field names, because this will make them
+harder to retrieve. For other field names, you can do this:
+$hits = $index->find($query);
+foreach ($hits as $hit) {
+    // Get 'title' document field
+    $title = $hit->title;
+}
+But to retrieve a field called id, you would have to do this:
+$id = $hit->getDocument()->id;
+This is only required for the fieldnames called id and score, so it’s best to use differ-
+ent names, such as doc_id and doc_score.
+
+
+
+
+
+CURDATE()
+
+i.DisplayUntil >= CURDATE()'

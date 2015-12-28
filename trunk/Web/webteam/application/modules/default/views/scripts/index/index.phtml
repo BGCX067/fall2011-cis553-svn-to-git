@@ -1,0 +1,74 @@
+<?php //if(isset($this->records)){
+		//echo 'record count(' . count($this->records) . ')'; 
+		//echo '<br />';
+		//print_r($this->records);
+		//} ?>
+
+
+
+<div class="cleaner">&nbsp;</div>
+<h3>Let's get started!</h3>
+<strong>Hello from the webteam</strong> <p>Let's look at interesting sample videos. I am sure you will enjoy them.</p>
+
+
+
+<div id='mediaspace44'>This text will be replaced</div>
+
+<script type='text/javascript'>
+  jwplayer('mediaspace44').setup({
+    'flashplayer': '/jwplayer/player.swf',
+    'file': 'bunny.flv',
+    'streamer': 'rtmp://edge01.fms.dutchview.nl/botr',
+    'controlbar': 'bottom',
+    'repeat': 'list',
+    'image': '/media/RTMP.png',
+    'width': '470',
+    'height': '290'
+  });
+</script>
+
+<br />
+
+
+
+<!-- the names of containrs must be different otherwise you will end up having only 1 player
+ 		notice the div id for the players below container and container1 -->
+<div id="container">Loading the player ...</div>
+<script type="text/javascript">
+jwplayer("container").setup({
+flashplayer: "/jwplayer/player.swf",
+file: "/media/video.mp4",
+image: "/media/preview.jpg",
+height: 270,
+width: 480
+});
+</script>
+
+
+<br />
+
+
+<div id="mediaplayer">JW Player goes here</div>
+ 
+ 
+ <script type="text/javascript">
+  jwplayer("mediaplayer").setup({
+   height: 270,
+   width: 480,
+   modes:[
+    { type:"flash",
+      src: "player.swf",
+      config: {
+     file: "stream1",
+     streamer: "rtmp://141.215.80.249/StreamingServer/",
+     provider: "rtmp"
+      }
+    }
+    ]
+  });
+ </script>
+ 
+
+
+
+

@@ -1,0 +1,77 @@
+<h2>View Video</h2>
+
+
+<div class = "playercontainer">
+
+<div id="mediaplayer">JW Player goes here</div>
+ 
+ 
+ <script type="text/javascript">
+  jwplayer("mediaplayer").setup({
+   height: 270,
+   width: 480,
+   modes:[
+    { type:"flash",
+      src: "/jwplayer/player.swf",
+      config: {
+     file: "<?php echo $this->item['StreamID']; ?>",
+     streamer: "rtmp://141.215.80.249/StreamingServer/",
+     provider: "rtmp"
+      }
+    }
+    ]
+  });
+ </script>
+
+
+</div>
+
+
+
+<?php //if ($this->escape($this->item['VideoType'] == 'live')) {?>
+
+<!--		<div id='mediaspace'>Loading JW Player...</div>-->
+		<script type='text/javascript'>
+		//  jwplayer('mediaspace').setup({
+		 //   'flashplayer': '/jwplayer/player.swf',
+		 //   'file': "<?php //echo $this->item['VideoFileName']; ?>",
+		//   'streamer': "<?php //echo $this->item['VideoPath']; ?>",
+		 //   'controlbar': 'bottom',
+		  //  'repeat': 'list',
+		  //  'image': "<?php //echo $this->item['ImageURL']; ?>",
+		 //  'width': '480',
+		  //  'height': '270'
+		 // });
+		</script>
+
+<?php // } else {?>
+<!--		<div id="container">Loading the player ...</div>-->
+		<script type="text/javascript">
+		//jwplayer("container").setup({
+		//flashplayer: "/jwplayer/player.swf",
+		//file: "<?php //echo $this->item['VideoPath'] . '/' . $this->item['VideoFileName']; ?>" ,
+		//image: "<?php ///echo $this->item['ImageURL']; ?>",
+		//height: 270,
+		//width: 480
+		//});
+		</script>
+<?php //} ?>
+
+
+<div id="record">
+<table class="hovertable">
+	<tr>
+		<th class="key">ID:</th>
+		<td class="value"><?php echo $this->escape($this->item['VideoID']); ?></td>
+	</tr>
+	<tr>
+		<th class="key">Title:</th>
+		<td class="value"><?php echo $this->escape($this->item['Title']); ?></td>
+	</tr>
+	<tr>
+		<th class="key">Description:</th>
+		<td class="value"><?php echo $this->escape($this->item['Description']); ?></td>
+	</tr>
+</table>
+</div>
+

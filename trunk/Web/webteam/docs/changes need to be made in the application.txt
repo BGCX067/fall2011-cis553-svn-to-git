@@ -1,0 +1,22 @@
+user table:
+
+change id to userid
+------------------------------------
+item  table: change item to video
+id to userid
+add Upload_Date attribute as a timestamp
+
+after talking to server team remove VideoType
+
+add active
+
+----
+log table chagen user to user to username
+chagnge item to videoid
+
+--
+in the display remove Live and Rename Past Broadcasts to Videos(which displays all videos regardsless of the type)
+
+
+
+the search image is not displayed correctly for the logged users

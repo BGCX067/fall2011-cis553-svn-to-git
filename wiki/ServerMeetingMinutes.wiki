@@ -1,0 +1,156 @@
+#labels Subsystem-Server
+= Meetings =
+
+||Meeting #||Date||
+||[#09-22-2011 1]||09-22-2011||
+||[#09-29-2011 2]||09-29-2011||
+||[#10-06-2011 3]||10-06-2011||
+||[#10-13-2011 4]||10-13-2011||
+
+----
+==Meeting 1==
+====09-22-2011====
+Jason Richmond will be the liaison with other teams.
+
+For next week we will all take a look at red5 and become more familiar with it. Go through the tutorials developer series. http://www.youtube.com/user/dominickaccattato#p/c/3/ykpV6Q8zcRM
+
+It may help if the Web team if they can make a bare bones web app to pull flash video from any server.
+
+Alex mentioned there was a tool from flash that can stream video to a server. Alex will find the tool and share the link with the group.
+
+
+The team will meet Thursdays at 8pm.
+----
+==Meeting 2==
+====09-29-2011====
+
+====Objective====
+Determine and assign action items required for development of the Server SPMP.
+
+====Status====
+  * All: Review of Red5 documentation and videos.
+
+====Discussion Items====
+  * Project summary (Front Matter, Introduction)
+    * purpose, scope, objectives
+    * project deliverable
+    * schedule
+
+    * Action Item: Jason and Lyndon will begin the project summary.
+
+    * Team Structure > 1 page
+      * roles and responsibilities
+      * communication
+
+        * Action Item: Each member will add their name to this section and what they would like to work on for the project.
+    * Risk Management >= 1 Page
+      * Action Item: Team: Each member will add 2-3 perceived risks to the SPMP Document.
+    * Configuration Management >= 2 Pages
+      * Action Item: Alex will set up a Google Code as a repository for our source files.
+      * Google+ to host documents.
+      * Change requests - Google Code
+    * Technical Process. 
+      * Process Model 
+      * Methods, Tools (Eclipse?) (Red5 9.1 Final), and Techniques  
+
+    * Software Test Plan >= 2 Pages
+      * Action Item: Kris will begin to complete the project test plan.
+      * Action Item: Jason: Make a template for SPMP Document for the team and share on Google Docs.
+
+----
+==Meeting 3==
+====10-06-2011====
+
+Date: 10/6/2011
+Time: 8:00-9:00pm
+Primary Facilitator: Jason
+
+Meeting Objective: Review current state of SPMP and determine the changes that need to be made prior to submission.
+
+1. Status
+Jason: Results of Team Representative Meeting.
+Team: Any new information that may have been gathered.
+
+2. Discussion Items
+	2.1 Feedback on current state of SPMP
+
+3. Wrap Up
+	3.1 Review and assign new action items.
+
+Action Items:
+
+Jason
+-Ask other teams about using VMWare for testing, and how they think the final presentation will go. Need to know how authentication will take place. What we need to pass to Web when we stream the video.
+-Put together a template together for Requirements Document
+
+Lyndon
+-Will prepare and present the SPMP to the class on Tuesday.
+-Finish Risk Analysis Table
+
+Kris
+-Will have V&V Plan completed tomorrow.
+
+Team
+-Have a final draft of the SPMP done by Monday.
+-Complete Red5 development environment setup from Alex’s Issue.
+----
+==Meeting 4==
+===10-13-2011===
+
+Time: 8:00-9:00pm
+Primary Facilitator: Jason
+
+Meeting Objective: Assign tasks for completion of the Software Requirements Document, determine how we wish to interface with other subsystems.
+
+
+===Status===
+
+Jason will discuss the outcomes from the Team Representative Meeting
+Team - Discuss new developments
+Jason: Send Team Rep Meeting Notes to Tommy.
+Kris: Setup demo on Tommy’s development environment, ran demo that covers the basic stream. Goal: Understand how the entire application will work.
+Alex: Loaded basic Red5 streaming server to the code site. [http://code.google.com/p/fall2011-cis553/source/checkout Source Code Checkout Page]
+
+_*NOTE : Server Teams Code has moved*_
+
+
+===Software Requirements Document===
+  * Problem Statement
+    * Current Situation
+    * Statement of Work
+    * Functional Requirements
+    * Non-Functional Requirements
+  * Scenarios
+    * What are the primary tasks that the system needs to perform?
+      * Collect Video Streamed from the Client
+      * Provide Video to the Websystem for vide
+      * Record Video streamed from the client
+    * What data will the actor create, store, change, remove, or add in the system.
+      * Video data created, and stored. Removed?
+    * What external changes does the system need to know about?
+      * Client video closed
+      * Unable to contact Web Subsystem
+      * Unable to contact Client Subsystem
+    * What changes or events will the actor of the system need to be informed about?
+  * Use Cases
+
+===Interfaces with other subsystems===
+Red5 can accept data before sending the stream. It was suggested that a unique non auto increment GUID be sent to identify the stream to the Web server. 
+
+For previously recorded videos it was proposed that the Server stores the video and provides the Web system with a url to use to access the stored video.
+
+===Action Items===
+
+*Team:*
+Write as many scenarios as possible. Everyone should write at least one by the end of the weekend.
+
+*Lyndon:*
+Produce an activity diagram for the basic functions of the server subsystem by the end of this weekend.
+
+*Alex:*
+Add folders to the trunk for web and client teams. Put current server code in a separate server 
+
+*Jason:*
+E-mail team representatives to have them assign the task of completing an activity diagram for the basic functions of their subsystems.
+
+_Lyndon and Jason will be our presenters for the Requirements Presentation._

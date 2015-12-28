@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="1250" height="800" currentState="Login"
+					   initialize="init()"
+					   preloaderChromeColor="yellow">
+
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Style source="Client.css"/>
+	<s:states>
+		<s:State name="Login"/>
+		<s:State name="MainState"/>
+	</s:states>
+	<fx:Declarations>
+		<s:WebService id="webService" wsdl="http://141.215.80.233/soap?wsdl" showBusyCursor="true" fault="handleWebServiceFault(event)" > 
+
+			<mx:operation name="ValidateUser" resultFormat="object" 
+						  fault="handleWebServiceFault(event)"
+						  result="handleAuthUserResult(event)"
+						  showBusyCursor="true"/> 
+			
+			<mx:operation name="CreateStream" resultFormat="object"
+						  fault="handleWebServiceFault(event)"
+						  result="handleCreateStreamResult(event)"
+						  showBusyCursor="true"/>						  
+		</s:WebService> 
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import edu.uom.cis553.client.log.Logger;
+			import edu.uom.cis553.client.model.ModelLocator;
+			import edu.uom.cis553.client.model.UserVO;
+			import edu.uom.cis553.client.model.VideoContentVO;
+			
+			import flash.media.Microphone;
+			import flash.net.navigateToURL;
+			
+			import mx.collections.ArrayList;
+			import mx.collections.XMLListCollection;
+			import mx.controls.Alert;
+			import mx.core.UIComponent;
+			import mx.managers.CursorManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable]
+			private var model:ModelLocator = ModelLocator.getInstance();
+			
+			private var camera:Camera=null;
+			private var microphone:Microphone=null;
+			private var ns_publish:NetStream = null;
+			private var nc:NetConnection = null;
+			
+			[Bindable]
+			private var blnStreamButtonEnabled:Boolean=false;
+			[Bindable]
+			private var blnStopStreamButtonEnabled:Boolean=false;
+			private var logger:Logger = new Logger();
+			
+			//Init the app.
+			private function init(): void {
+				var screenBounds:Rectangle = Screen.mainScreen.bounds;
+				// window position and state
+				nativeWindow.x = (screenBounds.width - nativeWindow.width) / 2;
+				nativeWindow.y = (screenBounds.height - nativeWindow.height) / 2;
+			}
+			
+			//Logging function.
+			private function log(msg:String):void {
+				logger.log(msg);
+			}
+			
+			//Return calls from WebService
+			private function handleAuthUserResult(event:Event):void {
+				CursorManager.removeBusyCursor();
+				if((event as ResultEvent).result.toString() == 'INVALID_CREDENTIALS') {
+					Alert.show("Invalid Username or password. Retry","Message",Alert.OK);
+					txtUserName.setFocus();
+					log("Login Failure");
+				} else {
+					model.sessionID = (event as ResultEvent).result.toString();
+					currentState='MainState';
+					log("Login Success, got sessionID " + model.sessionID);
+				}			
+			}
+						
+			private function handleCreateStreamResult(event:Event):void {				
+				model.streamID = (event as ResultEvent).result.toString();
+				log("Got Stream ID " + model.streamID);
+				// Disable the button so that you can only publish once.
+				model.streaming = true;
+				btnStream.enabled = false;
+				btnStopStream.enabled = true;
+				//Get connection
+				getConnection();
+			}		
+			
+			private function handleWebServiceFault(event:Event):void {
+				CursorManager.removeBusyCursor();
+				var fault:FaultEvent = event as FaultEvent;
+				log("Fault communicating with Webserver " + fault.fault.faultDetail.toString());
+				Alert.show(fault.fault.faultDetail.toString());
+			}
+			
+			//stop streaming
+			private function stopStreaming():void {
+				model.streaming = false;
+				detachCameraFromLocalDisplay();
+				if(ns_publish != null) {
+					ns_publish.attachCamera(null);
+					nc.close();
+				}
+				// Flip the start/stop buttons
+				btnStream.enabled = true;
+				btnStopStream.enabled = false;
+				log("Stopping Stream " + model.streamID);
+			}			
+			
+			//get connection to the Red5 Server
+			private function getConnection():void {
+				var connectionURL:String = "rtmp://141.215.80.249/StreamingServer";
+				nc = new NetConnection();
+				nc.connect(connectionURL);
+				nc.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+				log("Connected to Server " + connectionURL);
+			}
+			
+			//Event handler during streaming.
+			private function netStatusHandler(event:NetStatusEvent):void {
+				trace(event.info.code + " | " + event.info.description);
+				log(event.info.code + " | " + event.info.description);
+				switch (event.info.code) {
+					case "NetConnection.Connect.Success":
+						ns_publish = new NetStream(nc);
+						ns_publish.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+						ns_publish.attachCamera(camera);
+						ns_publish.attachAudio(microphone);
+						ns_publish.publish(model.streamID,"record");
+						attachCameraToLocalDisplay();
+						log("Start Streaming " + model.streamID);
+						break;
+					default:
+						trace(event.info.code + " | " + event.info.description);
+						break;
+				}
+			}
+			
+			//End Stream functions
+			
+			
+			private function getStreamID():void {
+				//Go get the 
+				var videoContent:VideoContentVO = new VideoContentVO();
+				videoContent.sessionID = model.sessionID;
+				videoContent.keyWords = txtVideoKeyWords.text;
+				videoContent.streamName = txtVideoTitle.text;
+				webService.CreateStream(videoContent.sessionID,videoContent.streamName,videoContent.keyWords);
+			}
+			
+			
+			//Take user to the web client to create the account
+			private function gotoBrowser():void {
+				navigateToURL(new URLRequest("http://141.215.80.233/signup"));
+			}
+			
+			private function detectCameras():void {
+				
+				model.cameraArray.removeAll();
+				model.cameraArray = new ArrayList(Camera.names);
+				
+				if (model.cameraArray.length > 0)
+				{
+					cmbCameras.dataProvider = model.cameraArray;
+				} else {
+					btnTestCamera.enabled=false;
+					Alert.show("No attached Cameras found. Connect a camera and click Detect","Message",Alert.OK);
+					log("No attached Cameras found");
+				}
+			}
+			
+			private function testCamera():void {
+				if(camera != null) {
+					attachCameraToLocalDisplay();
+					btnStopTestCamera.enabled=true;
+					microphone.setLoopBack(true);
+				}
+			}
+			
+			private function attachCameraToLocalDisplay():void {
+				videoStreamDisplay.attachCamera(camera); 
+				videoStreamDisplay.visible=true;
+			}
+
+			private function detachCameraFromLocalDisplay():void {
+				videoStreamDisplay.attachCamera(null); 
+				videoStreamDisplay.visible=false;				
+			}
+			
+			private function stopTestCamera():void {
+				detachCameraFromLocalDisplay();
+				microphone.setLoopBack(false);
+				btnStopTestCamera.enabled=false;				
+			}
+			
+			private function setSelectedCamera():void {
+				camera = null;
+				if(cmbCameras != null && cmbCameras.selectedItem != null && cmbCameras.selectedItem != "") {
+					var selectedCamName:String = cmbCameras.selectedIndex.toString();
+					camera = Camera.getCamera(selectedCamName);
+					microphone = Microphone.getMicrophone();
+					microphone.setUseEchoSuppression(true);					
+					btnTestCamera.enabled = true;
+					btnStopTestCamera.enabled=false;
+				}
+			}
+			
+			private function authenticate():void {
+				if(txtUserName.text.length > 0 && txtPassword.text.length > 0) {
+					var user:UserVO = new UserVO();
+					user.name = txtUserName.text;
+					user.password = txtPassword.text;
+					performAuth(user);
+					CursorManager.setBusyCursor();
+				} else {
+					setErrorString(txtUserName,"User Name cannot be blank");
+					setErrorString(txtPassword,"Password cannot be blank");
+				}
+			}
+			
+			private function performAuth(user:UserVO):void {
+				webService.ValidateUser(user.name,user.password);
+			}
+			
+			private function logout():void {
+				log("User logging out");
+				model.sessionID = null;
+				model.streamID = null;
+				txtUserName.text="";
+				txtPassword.text="";
+				currentState="Login";
+			}
+			
+			private function setErrorString(displayObject:UIComponent, msg:String):void {
+				displayObject.errorString = msg;
+			}
+			
+			
+			public function isStreamButtonEnabled():void {
+				if(txtVideoTitle != null && txtVideoKeyWords != null && txtVideoTitle.text != '' && txtVideoKeyWords.text != '' && camera != null) {
+					blnStreamButtonEnabled= true;
+				} else {
+					blnStreamButtonEnabled= false;
+				}
+			}
+			
+			public function isStopStreamButtonEnabled():void {
+				if(model.streaming) {
+					blnStopStreamButtonEnabled = true;
+				} else {
+					blnStopStreamButtonEnabled =  false;
+				}
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+	<s:Panel includeIn="Login" width="100%" height="100%" fontWeight="normal" textAlign="center" title="Welcome to CamClient" >		
+		<s:Form horizontalCenter="0" verticalCenter="0">
+			<s:FormItem label="Name" fontFamily="Arial" fontSize="17" required="true">
+				<s:TextInput id="txtUserName" textAlign="left"/>
+			</s:FormItem>
+			<s:FormItem label="Password" fontFamily="Arial" fontSize="17" required="true">
+				<s:TextInput id="txtPassword" displayAsPassword="true" textAlign="left"/>
+			</s:FormItem>
+			<s:HGroup>
+				<s:FormItem>
+					<s:Button width="114" height="36" label="Login" click="authenticate()"
+							  fontFamily="Arial" fontSize="17"/>
+				</s:FormItem>
+				<s:FormItem>
+					<s:Button width="143" height="36" label="Create Account" click="gotoBrowser()"
+							  fontFamily="Arial" fontSize="17"/>
+				</s:FormItem>
+			</s:HGroup>
+		</s:Form>
+	</s:Panel>
+	
+	<s:Panel includeIn="MainState" width="100%" height="100%" fontWeight="normal" textAlign="center" title="CamClient" >		
+		<s:HGroup width="100%" height="100%">
+			<s:VGroup width="40%" height="100%">
+				<s:Panel width="100%" height="100%" title="Controls">
+						<s:Form width="100%" height="100%">
+								<s:FormHeading label="Camera Controls" textAlign="center"/>
+								<s:FormItem label="Camera(s) Found: " width="100%" height="20%">
+									<s:ComboBox id="cmbCameras" width="194" height="34"
+												change="setSelectedCamera()"
+												dataProvider="{model.cameraArray}" fontSize="14"
+												fontWeight="bold"/>
+									<s:HGroup>
+										<s:Button height="41" label="Detect Camera"
+												  click="detectCameras()" fontFamily="Arial"
+												  fontSize="14" fontWeight="bold"/>
+										<s:Button id="btnTestCamera" height="39" label="Test"
+												  click="testCamera()" enabled="false"
+												  fontFamily="Arial" fontSize="14" fontWeight="bold"/>
+										<s:Button id="btnStopTestCamera" height="40"
+												  label="Stop Test" click="stopTestCamera()"
+												  enabled="false" fontFamily="Arial" fontSize="14"
+												  fontWeight="bold"/>
+									</s:HGroup>
+
+								</s:FormItem>
+								<s:FormItem width="100%" height="30%">
+									<s:HGroup>
+										<s:Button id="btnStream" width="124" height="53"
+												  label="Stream" chromeColor="#184B17"
+												  click="getStreamID()"
+												  enabled="{blnStreamButtonEnabled}"
+												  fontFamily="Arial" fontSize="17" fontWeight="bold"/>
+										<s:Button id="btnStopStream" width="124" height="53"
+												  label="Stop Stream" chromeColor="#E93214"
+												  click="stopStreaming()"
+												  enabled="{blnStopStreamButtonEnabled}"
+												  fontFamily="Arial" fontSize="17" fontWeight="bold"/>
+									</s:HGroup>
+								</s:FormItem>
+						</s:Form>
+
+				</s:Panel>
+			</s:VGroup>
+			<s:Panel width="60%" height="100%" title="Video &amp; Properties">
+				<s:VGroup width="100%" height="100%">
+					<mx:VideoDisplay id="videoStreamDisplay" width="100%" height="60%"/>
+
+					<s:Form width="100%" height="40%">
+						<s:FormHeading label="Video Details" textAlign="center"/>
+						<s:FormItem width="100%" height="20%" label="Title: " fontSize="15"
+									required="true">
+							<s:TextInput id="txtVideoTitle" width="100%" height="100%"
+										 textAlign="left" change="isStreamButtonEnabled()"/>
+							<s:helpContent >
+								<s:Label text="(eg. New Kitchen)"/>      
+							</s:helpContent>
+						</s:FormItem>
+<!--						<s:FormItem width="100%" height="40%" label="Description: " fontSize="15"
+									required="true">
+							<s:TextArea id="txtVideoDesc" width="100%" height="55" textAlign="left" change="isStreamButtonEnabled()"/>
+							<s:helpContent >
+								<s:Label text="(eg. My new kitchen)"/>      
+							</s:helpContent>							
+						</s:FormItem>
+-->						<s:FormItem width="100%" height="40%" label="Key Words: " fontSize="15"
+									required="true">
+							<s:TextArea id="txtVideoKeyWords" width="100%" height="53"
+										textAlign="left" change="isStreamButtonEnabled()"/>
+							<s:helpContent >
+								<s:VGroup>
+									<s:Label text="(Delimiter = Space)"/>									
+								</s:VGroup>
+							</s:helpContent>
+						</s:FormItem>
+					</s:Form>
+				</s:VGroup>
+				<s:Button x="663" y="-27" label="Logout" chromeColor="#E42708" click="logout()"
+						  color="#D4F209" fontStyle="italic"/>
+
+				
+			</s:Panel>
+		</s:HGroup>
+
+	</s:Panel>	
+	
+</s:WindowedApplication>

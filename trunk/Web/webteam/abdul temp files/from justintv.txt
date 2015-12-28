@@ -1,0 +1,13 @@
+<div style="width: 640px; height: 387px" id="standard_holder" class="live_site_player_container swf_container">
+<div id="live_site_player_flash" class="swf_container">
+You need Adobe Flash Player to watch this video.
+<br>
+<a href="http://get.adobe.com/flashplayer/">Download it from Adobe.</a>
+<script>
+  //&lt;![CDATA[
+    swfobject.embedSWF("http://www-cdn.justin.tv/widgets/live_site_player.r2337d53b438d0373e7cbb24b3840b109aa6191eb.swf", "live_site_player_flash", "640px", "387px", "9", "/widgets/expressinstall.swf", {"publisherGuard":null,"hide_chat":"true","searchquery":null,"backgroundImageUrl":"http://static-cdn.jtvnw.net/jtv_user_pictures/anonymous_monkey-320x240.jpg","channel":"naslseasontwo","auto_play":"true","hostname":"www.twitch.tv","publisherTimezoneOffset":480}, {"allowNetworking":"all","allowScriptAccess":"always","allowFullScreen":"true","wmode":"opaque"}, "");
+  //]]&gt;
+</script>
+
+</div>
+</div>
